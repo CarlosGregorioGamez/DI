@@ -29,23 +29,23 @@ public class VistaPrincipal extends javax.swing.JFrame {
         establecerFondo();
     }
 
- private void establecerFondo() {
-    // Carga la imagen original
-    ImageIcon originalIcon = new ImageIcon(getClass().getResource("/imagenes/fondo.jpg"));
+    private void establecerFondo() {
+        // Carga la imagen original
+        ImageIcon originalIcon = new ImageIcon(getClass().getResource("/imagenes/fondo.jpg"));
 
-    // Escala la imagen al tamaño del desktopPane
-    Image imagenOriginal = originalIcon.getImage();
-    Image imagenEscalada = imagenOriginal.getScaledInstance(jDesktopPane1.getWidth(), jDesktopPane1.getHeight(), Image.SCALE_SMOOTH);
-    ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
+        // Escala la imagen al tamaño del desktopPane
+        Image imagenOriginal = originalIcon.getImage();
+        Image imagenEscalada = imagenOriginal.getScaledInstance(jDesktopPane1.getWidth(), jDesktopPane1.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
 
-    // Crea un JLabel con la imagen escalada
-    JLabel fondo = new JLabel(iconoEscalado);
-    fondo.setBounds(0, 0, jDesktopPane1.getWidth(), jDesktopPane1.getHeight());
+        // Crea un JLabel con la imagen escalada
+        JLabel fondo = new JLabel(iconoEscalado);
+        fondo.setBounds(0, 0, jDesktopPane1.getWidth(), jDesktopPane1.getHeight());
 
-    // Añade el fondo y lo manda al fondo
-    jDesktopPane1.add(fondo, JLayeredPane.FRAME_CONTENT_LAYER);
-    jDesktopPane1.moveToBack(fondo);
-}
+        // Añade el fondo y lo manda al fondo
+        jDesktopPane1.add(fondo, JLayeredPane.FRAME_CONTENT_LAYER);
+        jDesktopPane1.moveToBack(fondo);
+    }
 
     public JDesktopPane getjDesktopPane1() {
         return jDesktopPane1;
@@ -272,7 +272,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu4MouseClicked
 
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
-       this.dispose();
+        this.dispose();
     }//GEN-LAST:event_jMenu5MouseClicked
 
     /**
