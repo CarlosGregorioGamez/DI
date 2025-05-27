@@ -26,11 +26,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Eliminar personaje"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuDeletePActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="MenuVerP">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ver personajes"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuVerPActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -137,12 +143,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="394" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="598" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="293" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="727" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>

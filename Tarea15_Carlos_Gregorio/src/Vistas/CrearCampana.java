@@ -15,11 +15,11 @@ import javax.swing.JOptionPane;
  *
  * @author carlo
  */
-public class CrearCampaña extends javax.swing.JInternalFrame {
+public class CrearCampana extends javax.swing.JInternalFrame {
 
     CampanaController controlador;
     
-    public CrearCampaña() throws SQLException {
+    public CrearCampana() throws SQLException {
         this.controlador = new CampanaController();
         initComponents();
         botonFacil.setActionCommand("Fácil");
@@ -164,7 +164,7 @@ public class CrearCampaña extends javax.swing.JInternalFrame {
                 controlador.crearCampana(campana);
                 JOptionPane.showMessageDialog(null, "Campaña añadida en la base de datos");
             } catch (SQLException ex) {
-                Logger.getLogger(CrearCampaña.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CrearCampana.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else JOptionPane.showMessageDialog(null, "Por favor rellene los campos ", title, HEIGHT);
         

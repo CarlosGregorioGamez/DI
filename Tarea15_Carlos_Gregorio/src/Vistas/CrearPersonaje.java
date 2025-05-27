@@ -4,6 +4,13 @@
  */
 package Vistas;
 
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import java.sql.*;
+
+
 /**
  *
  * @author carlo
@@ -13,9 +20,42 @@ public class CrearPersonaje extends javax.swing.JInternalFrame {
     /**
      * Creates new form CrearPersonaje
      */
+    private Map<String, Integer> mapaCampanas = new HashMap<>();
+    
     public CrearPersonaje() {
         initComponents();
+        cargarCampanas();
     }
+    
+    private void cargarCampanas() {
+    DefaultListModel<String> modelo = new DefaultListModel<>();
+    mapaCampanas.clear();
+     try {
+        Modelo.ConnectionBD conexionBD = new Modelo.ConnectionBD();
+        conexionBD.connection();
+
+        String sql = "SELECT id, nombre FROM partidas";
+        ResultSet rs = conexionBD.getStatement().executeQuery(sql);
+
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            String nombre = rs.getString("nombre");
+
+            modelo.addElement(nombre);                // Añade el nombre al modelo del JList
+            mapaCampanas.put(nombre, id);             // Guarda el par nombre -> id
+        }
+
+        jList1.setModel(modelo); // Asigna el modelo con los nombres al JList
+
+        rs.close();
+        conexionBD.closeConnection();
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error al cargar campañas: " + ex.getMessage());
+    }
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -73,8 +113,18 @@ public class CrearPersonaje extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(listaClase);
 
         botonAdd.setText("Añadir");
+        botonAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAddActionPerformed(evt);
+            }
+        });
 
         botonSalir.setText("Salir");
+        botonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSalirActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Campaña:");
 
@@ -148,6 +198,14 @@ public class CrearPersonaje extends javax.swing.JInternalFrame {
     private void textoNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textoNombreActionPerformed
+
+    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_botonSalirActionPerformed
+
+    private void botonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAddActionPerformed
+        
+    }//GEN-LAST:event_botonAddActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

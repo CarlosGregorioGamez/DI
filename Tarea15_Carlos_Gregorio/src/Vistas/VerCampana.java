@@ -1,7 +1,7 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
+*/
 package Vistas;
 
 import Controlador.CampanaController;
@@ -11,20 +11,23 @@ import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
 import javax.swing.table.DefaultTableModel;
 
+
 /**
  *
  * @author carlo
  */
-public class VerCampaña extends javax.swing.JInternalFrame {
+public class VerCampana extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form CrearPersonaje
      */
-    JDesktopPane escritorio;
+    VistaPrincipal principal;
+    private JDesktopPane escritorio;
     CampanaController controlador = new CampanaController();
 
-    public VerCampaña() throws SQLException {
-        escritorio = new JDesktopPane();
+    public VerCampana(VistaPrincipal principal) throws SQLException {
+        this.principal = principal;
+        escritorio = principal.getjDesktopPane1();
         initComponents();
         DefaultTableModel modeloTabla = controlador.verCampanas();
         tablaCampañas.setModel(modeloTabla);
@@ -117,16 +120,14 @@ public class VerCampaña extends javax.swing.JInternalFrame {
     private void botonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonUpdateActionPerformed
         int fila = tablaCampañas.getSelectedRow();
         if (fila != -1) {
-            String nombre = (String) tablaCampañas.getValueAt(fila, 0); // o ID si tienes
-
-            ActualizarCampaña actualizar;
-            try {
-                actualizar = new ActualizarCampaña(nombre);
-                escritorio.add(actualizar);
-                actualizar.setVisible(true);
-            } catch (SQLException ex) {
-                Logger.getLogger(VerCampaña.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            String nombre = (String) tablaCampañas.getValueAt(fila, 1);
+             try {
+            ActualizarCampana actualizar = new ActualizarCampana(nombre);
+            escritorio.add(actualizar);
+            actualizar.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(VerCampana.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         }
 

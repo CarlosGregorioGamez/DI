@@ -16,11 +16,11 @@ import javax.swing.JOptionPane;
  *
  * @author carlo
  */
-public class BorrarCampaña extends javax.swing.JInternalFrame {
+public class BorrarCampana extends javax.swing.JInternalFrame {
 
     
     CampanaController controlador;
-    public BorrarCampaña() throws SQLException {
+    public BorrarCampana() throws SQLException {
         this.controlador = new CampanaController();
         initComponents();
     }
@@ -94,7 +94,7 @@ public class BorrarCampaña extends javax.swing.JInternalFrame {
                 controlador.borrarCampana(nombre);
                 JOptionPane.showMessageDialog(null, "Campaña eliminada la base de datos");
             } catch (SQLException ex) {
-                Logger.getLogger(CrearCampaña.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CrearCampana.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else JOptionPane.showMessageDialog(null, "Por favor rellene los campos ", title, HEIGHT);
             }//GEN-LAST:event_botonDeleteActionPerformed

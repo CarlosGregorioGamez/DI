@@ -1,7 +1,7 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
+*/
 package Vistas;
 
 import Controlador.CampanaController;
@@ -13,14 +13,16 @@ import javax.swing.JOptionPane;
  *
  * @author carlo
  */
-public class ActualizarCampaña extends javax.swing.JInternalFrame {
+
+public class ActualizarCampana extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form CrearPersonaje
      */
     private CampanaController controlador = new CampanaController();
+    private javax.swing.ButtonGroup grupoDificultad;
 
-    public ActualizarCampaña(String nombre) throws SQLException {
+    public ActualizarCampana(String nombre) throws SQLException {
         initComponents();
         grupoDificultad = new javax.swing.ButtonGroup();
         grupoDificultad.add(botonFacil);
@@ -74,6 +76,11 @@ public class ActualizarCampaña extends javax.swing.JInternalFrame {
         });
 
         botonSalir.setText("Salir");
+        botonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -137,34 +144,39 @@ public class ActualizarCampaña extends javax.swing.JInternalFrame {
 
     private void botonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonUpdateActionPerformed
         String nombreViejo = textoNombreViejo.getText();
-    String nuevoNombre = textoNuevoNombre.getText().isEmpty() ? nombreViejo : textoNuevoNombre.getText();
+        String nuevoNombre = textoNuevoNombre.getText().isEmpty() ? nombreViejo : textoNuevoNombre.getText();
 
-    String nuevaDificultad = null;
-    if (botonFacil.isSelected()) nuevaDificultad = "fácil";
-    else if (botonNormal.isSelected()) nuevaDificultad = "medio";
-    else if (botonDificil.isSelected()) nuevaDificultad = "difícil";
-    else if (botonMuyDificil.isSelected()) nuevaDificultad = "muy difícil";
+        String nuevaDificultad = null;
+        if (botonFacil.isSelected()) {
+            nuevaDificultad = "fácil";
+        } else if (botonNormal.isSelected()) {
+            nuevaDificultad = "medio";
+        } else if (botonDificil.isSelected()) {
+            nuevaDificultad = "difícil";
+        } else if (botonMuyDificil.isSelected()) {
+            nuevaDificultad = "muy difícil";
+        }
 
-    if (nuevaDificultad == null) {
-        JOptionPane.showMessageDialog(this, "Selecciona una dificultad.", "Advertencia", JOptionPane.WARNING_MESSAGE);
-        return;
+        if (nuevaDificultad == null) {
+            JOptionPane.showMessageDialog(this, "Selecciona una dificultad.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        try {
+            ModeloCampana campaña = new ModeloCampana();
+            campaña.setNombre(nuevoNombre);
+            campaña.setDificultad(nuevaDificultad);
+
+            controlador.actualizarCampaña(nombreViejo, campaña); // implementas esto en el controlador
+
+            JOptionPane.showMessageDialog(this, "Campaña actualizada correctamente.");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error al actualizar campaña.", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        }
     }
 
-    try {
-        ModeloCampana campaña = new ModeloCampana();
-        campaña.setNombre(nuevoNombre);
-        campaña.setDificultad(nuevaDificultad);
-
-        controlador.actualizarCampaña(nombreViejo, campaña); // implementas esto en el controlador
-
-        JOptionPane.showMessageDialog(this, "Campaña actualizada correctamente.");
-    } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(this, "Error al actualizar campaña.", "Error", JOptionPane.ERROR_MESSAGE);
-        ex.printStackTrace();
-    }
-}
-
-private void cargarDatosDesdeController(String nombre) {
+    private void cargarDatosDesdeController(String nombre) {
         try {
             ModeloCampana campaña = controlador.obtenerCampañaPorNombre(nombre);
             if (campaña != null) {
@@ -194,10 +206,12 @@ private void cargarDatosDesdeController(String nombre) {
             JOptionPane.showMessageDialog(this, "Error al cargar campaña", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
-    }
     }//GEN-LAST:event_botonUpdateActionPerformed
 
-private javax.swing.ButtonGroup grupoDificultad;
+    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_botonSalirActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -213,3 +227,4 @@ private javax.swing.ButtonGroup grupoDificultad;
     private javax.swing.JTextField textoNombreViejo;
     private javax.swing.JTextField textoNuevoNombre;
     // End of variables declaration//GEN-END:variables
+}

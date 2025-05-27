@@ -4,6 +4,7 @@
  */
 package Vistas;
 
+import Vistas.VerCampana;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +21,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
      */
     public VistaPrincipal() {
         initComponents();
+    }
+
+    public JDesktopPane getjDesktopPane1() {
+        return jDesktopPane1;
     }
 
     /**
@@ -53,11 +58,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGap(0, 598, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 293, Short.MAX_VALUE)
+            .addGap(0, 727, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Personajes");
@@ -74,9 +79,19 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jMenu1.add(MenuUpdateP);
 
         MenuDeleteP.setText("Eliminar personaje");
+        MenuDeleteP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuDeletePActionPerformed(evt);
+            }
+        });
         jMenu1.add(MenuDeleteP);
 
         MenuVerP.setText("Ver personajes");
+        MenuVerP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuVerPActionPerformed(evt);
+            }
+        });
         jMenu1.add(MenuVerP);
 
         jMenuBar1.add(jMenu1);
@@ -153,13 +168,16 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void MenuCrearPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCrearPActionPerformed
-        // TODO add your handling code here:
+        CrearPersonaje crearP;
+        crearP = new CrearPersonaje();
+        crearP.setVisible(true);
+        jDesktopPane1.add(crearP);
     }//GEN-LAST:event_MenuCrearPActionPerformed
 
     private void MenuDeleteCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuDeleteCActionPerformed
-        BorrarCampaña borrarC;
+        BorrarCampana borrarC;
         try {
-            borrarC = new BorrarCampaña();
+            borrarC = new BorrarCampana();
             borrarC.setVisible(true);
             jDesktopPane1.add(borrarC);
         } catch (SQLException ex) {
@@ -168,9 +186,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuDeleteCActionPerformed
 
     private void MenuCrearCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCrearCActionPerformed
-        CrearCampaña crearC;
+        CrearCampana crearC;
         try {
-            crearC = new CrearCampaña();
+            crearC = new CrearCampana();
             crearC.setVisible(true);
             jDesktopPane1.add(crearC);
         } catch (SQLException ex) {
@@ -194,14 +212,32 @@ public class VistaPrincipal extends javax.swing.JFrame {
         }*/    }//GEN-LAST:event_MenuUpdateCActionPerformed
 
     private void MenuVerCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuVerCActionPerformed
-VerCampaña verC;
+        VerCampana verC;
         try {
-            verC = new VerCampaña();
+            verC = new VerCampana(this);  // <- aquí pasas la instancia
             verC.setVisible(true);
             jDesktopPane1.add(verC);
         } catch (SQLException ex) {
             Logger.getLogger(VistaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }    }//GEN-LAST:event_MenuVerCActionPerformed
+
+    private void MenuDeletePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuDeletePActionPerformed
+        BorrarPersonaje borrarP;
+        borrarP = new BorrarPersonaje();
+        borrarP.setVisible(true);
+        jDesktopPane1.add(borrarP);
+    }//GEN-LAST:event_MenuDeletePActionPerformed
+
+    private void MenuVerPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuVerPActionPerformed
+        VerPersonajes verP;
+        try {
+            verP = new VerPersonajes(this);
+            verP.setVisible(true);
+            jDesktopPane1.add(verP);
+        } catch (SQLException ex) {
+            Logger.getLogger(VistaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_MenuVerPActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,7 +291,5 @@ VerCampaña verC;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
-
-    
 
 }
