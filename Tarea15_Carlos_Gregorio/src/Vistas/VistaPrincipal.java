@@ -5,10 +5,15 @@
 package Vistas;
 
 import Vistas.VerCampana;
+import java.awt.Image;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,7 +26,26 @@ public class VistaPrincipal extends javax.swing.JFrame {
      */
     public VistaPrincipal() {
         initComponents();
+        establecerFondo();
     }
+
+ private void establecerFondo() {
+    // Carga la imagen original
+    ImageIcon originalIcon = new ImageIcon(getClass().getResource("/imagenes/fondo.jpg"));
+
+    // Escala la imagen al tamaño del desktopPane
+    Image imagenOriginal = originalIcon.getImage();
+    Image imagenEscalada = imagenOriginal.getScaledInstance(jDesktopPane1.getWidth(), jDesktopPane1.getHeight(), Image.SCALE_SMOOTH);
+    ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
+
+    // Crea un JLabel con la imagen escalada
+    JLabel fondo = new JLabel(iconoEscalado);
+    fondo.setBounds(0, 0, jDesktopPane1.getWidth(), jDesktopPane1.getHeight());
+
+    // Añade el fondo y lo manda al fondo
+    jDesktopPane1.add(fondo, JLayeredPane.FRAME_CONTENT_LAYER);
+    jDesktopPane1.moveToBack(fondo);
+}
 
     public JDesktopPane getjDesktopPane1() {
         return jDesktopPane1;
@@ -40,12 +64,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         MenuCrearP = new javax.swing.JMenuItem();
-        MenuUpdateP = new javax.swing.JMenuItem();
         MenuDeleteP = new javax.swing.JMenuItem();
         MenuVerP = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         MenuCrearC = new javax.swing.JMenuItem();
-        MenuUpdateC = new javax.swing.JMenuItem();
         MenuDeleteC = new javax.swing.JMenuItem();
         MenuVerC = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -58,11 +80,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 598, Short.MAX_VALUE)
+            .addGap(0, 1280, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 727, Short.MAX_VALUE)
+            .addGap(0, 685, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Personajes");
@@ -74,9 +96,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(MenuCrearP);
-
-        MenuUpdateP.setText("Actualizar datos de personaje");
-        jMenu1.add(MenuUpdateP);
 
         MenuDeleteP.setText("Eliminar personaje");
         MenuDeleteP.addActionListener(new java.awt.event.ActionListener() {
@@ -111,14 +130,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(MenuCrearC);
 
-        MenuUpdateC.setText("Actualizar datos de Campaña");
-        MenuUpdateC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuUpdateCActionPerformed(evt);
-            }
-        });
-        jMenu2.add(MenuUpdateC);
-
         MenuDeleteC.setText("Eliminar Campaña");
         MenuDeleteC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,12 +149,27 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Más Informacion");
+        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu3MouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Ayuda");
+        jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu4MouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenu4);
 
         jMenu5.setText("Salir");
+        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu5MouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
@@ -152,9 +178,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jDesktopPane1)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,16 +231,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_MenuCrearCMouseClicked
 
-    private void MenuUpdateCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuUpdateCActionPerformed
-        /*ActualizarCampaña updateC;
-        try {
-            updateC = new ActualizarCampaña();
-            updateC.setVisible(true);
-            jDesktopPane1.add(updateC);
-        } catch (SQLException ex) {
-            Logger.getLogger(VistaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }*/    }//GEN-LAST:event_MenuUpdateCActionPerformed
-
     private void MenuVerCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuVerCActionPerformed
         VerCampana verC;
         try {
@@ -246,6 +262,18 @@ public class VistaPrincipal extends javax.swing.JFrame {
             Logger.getLogger(VistaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_MenuVerPActionPerformed
+
+    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
+        JOptionPane.showMessageDialog(null, "En esta barra de menú encontrarás la informacion para añdir personajes y campañas a esta base de datos");
+    }//GEN-LAST:event_jMenu3MouseClicked
+
+    private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
+        JOptionPane.showMessageDialog(null, "Cada tabla (campaña y personajes) va separada entre sí. Importante que para actualizar datos de las tablas debes ir primero a ver campaña/personajes, asi seleccionas el que quieras modificar");
+    }//GEN-LAST:event_jMenu4MouseClicked
+
+    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
+       this.dispose();
+    }//GEN-LAST:event_jMenu5MouseClicked
 
     /**
      * @param args the command line arguments
@@ -287,8 +315,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuCrearP;
     private javax.swing.JMenuItem MenuDeleteC;
     private javax.swing.JMenuItem MenuDeleteP;
-    private javax.swing.JMenuItem MenuUpdateC;
-    private javax.swing.JMenuItem MenuUpdateP;
     private javax.swing.JMenuItem MenuVerC;
     private javax.swing.JMenuItem MenuVerP;
     private javax.swing.JDesktopPane jDesktopPane1;

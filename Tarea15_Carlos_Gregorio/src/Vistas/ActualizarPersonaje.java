@@ -115,7 +115,7 @@ public class ActualizarPersonaje extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Introduce el nombre del personaje:");
 
-        jLabel2.setText("Nuevo nombre(opcional):");
+        jLabel2.setText("Nuevo nombre(poner el mismo si no se cambia:");
 
         jLabel3.setText("Nivel:");
 
@@ -158,7 +158,7 @@ public class ActualizarPersonaje extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(textoNombreViejo, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))
+                        .addComponent(textoNombreViejo, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)

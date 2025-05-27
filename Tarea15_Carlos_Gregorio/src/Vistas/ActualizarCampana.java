@@ -56,7 +56,7 @@ public class ActualizarCampana extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Introduzca el nombre de la campaña:");
 
-        jLabel2.setText("Nuevo nombre (opcional):");
+        jLabel2.setText("Nuevo nombre (poner el mismo si no se cambia):");
 
         jLabel3.setText("Nueva dificultad:");
 
@@ -92,7 +92,7 @@ public class ActualizarCampana extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textoNombreViejo, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
+                        .addComponent(textoNombreViejo, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
