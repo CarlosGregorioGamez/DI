@@ -7,75 +7,86 @@
         <Menu class="javax.swing.JMenu" name="jMenu1">
           <Properties>
             <Property name="text" type="java.lang.String" value="Personajes"/>
-            <Property name="toolTipText" type="java.lang.String" value="Despliega el men&#xfa; de perrsonajes"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="MenuAddPersonaje">
+            <MenuItem class="javax.swing.JMenuItem" name="MenuCrearP">
               <Properties>
-                <Property name="text" type="java.lang.String" value="A&#xf1;adir personaje"/>
+                <Property name="text" type="java.lang.String" value="Crear personaje"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuCrearPActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="MenuUpdateP">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Actualizar datos de personaje"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="MenuVerPersonaje">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Ver personajes creados"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="MenuUpdatePersonaje">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Actualizar personaje"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="MenuDeletePersonaje">
+            <MenuItem class="javax.swing.JMenuItem" name="MenuDeleteP">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Eliminar personaje"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="MenuVerP">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Ver personajes"/>
               </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Campa&#xf1;as"/>
-            <Property name="toolTipText" type="java.lang.String" value="Despliega el men&#xfa; de campa&#xf1;as"/>
+            <Property name="text" type="java.lang.String" value="Campa&#xf1;a"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="MenuAddCampa&#xf1;a">
+            <MenuItem class="javax.swing.JMenuItem" name="MenuCrearC">
               <Properties>
-                <Property name="text" type="java.lang.String" value="A&#xf1;adir campa&#xf1;a"/>
+                <Property name="text" type="java.lang.String" value="Crear Campa&#xf1;a"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MenuCrearCMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuCrearCActionPerformed"/>
+              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="MenuVerCampa&#xf1;a">
+            <MenuItem class="javax.swing.JMenuItem" name="MenuUpdateC">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Ver campa&#xf1;as existentes"/>
+                <Property name="text" type="java.lang.String" value="Actualizar datos de Campa&#xf1;a"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuUpdateCActionPerformed"/>
+              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="MenuUpdateCampa&#xf1;a">
+            <MenuItem class="javax.swing.JMenuItem" name="MenuDeleteC">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Actualizar campa&#xf1;a"/>
+                <Property name="text" type="java.lang.String" value="Eliminar Campa&#xf1;a"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuDeleteCActionPerformed"/>
+              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="MenuDeleteCampa&#xf1;a">
+            <MenuItem class="javax.swing.JMenuItem" name="MenuVerC">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Borrar campa&#xf1;a"/>
+                <Property name="text" type="java.lang.String" value="Ver Campa&#xf1;as"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuVerCActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="M&#xe1;s informaci&#xf3;n"/>
-            <Property name="toolTipText" type="java.lang.String" value="Informaci&#xf3;n m&#xe1;s en detalle de la aplicacion"/>
+            <Property name="text" type="java.lang.String" value="M&#xe1;s Informacion"/>
           </Properties>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu4">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ayuda"/>
-            <Property name="toolTipText" type="java.lang.String" value="Ayuda sobre la aplicaci&#xf3;n"/>
           </Properties>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu5">
           <Properties>
             <Property name="text" type="java.lang.String" value="Salir"/>
-            <Property name="toolTipText" type="java.lang.String" value="Salir de la aplicaci&#xf3;n"/>
           </Properties>
         </Menu>
       </SubComponents>
@@ -104,19 +115,18 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <Component id="jDesktopPane1" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jDesktopPane1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jDesktopPane1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jDesktopPane1" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -127,12 +137,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="915" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="394" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="643" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="293" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
