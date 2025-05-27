@@ -169,9 +169,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
     private void MenuCrearPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCrearPActionPerformed
         CrearPersonaje crearP;
-        crearP = new CrearPersonaje();
-        crearP.setVisible(true);
-        jDesktopPane1.add(crearP);
+        try {
+            crearP = new CrearPersonaje();
+            crearP.setVisible(true);
+            jDesktopPane1.add(crearP);
+        } catch (SQLException ex) {
+            Logger.getLogger(VistaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_MenuCrearPActionPerformed
 
     private void MenuDeleteCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuDeleteCActionPerformed
@@ -222,10 +226,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
         }    }//GEN-LAST:event_MenuVerCActionPerformed
 
     private void MenuDeletePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuDeletePActionPerformed
-        BorrarPersonaje borrarP;
-        borrarP = new BorrarPersonaje();
-        borrarP.setVisible(true);
-        jDesktopPane1.add(borrarP);
+        try {
+            BorrarPersonaje borrarP;
+            borrarP = new BorrarPersonaje();
+            borrarP.setVisible(true);
+            jDesktopPane1.add(borrarP);
+        } catch (SQLException ex) {
+            Logger.getLogger(VistaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_MenuDeletePActionPerformed
 
     private void MenuVerPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuVerPActionPerformed

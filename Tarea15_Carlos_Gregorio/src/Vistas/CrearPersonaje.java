@@ -4,6 +4,8 @@
  */
 package Vistas;
 
+import Controlador.PersonajeController;
+import Modelo.ModeloPersonaje;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.DefaultListModel;
@@ -21,8 +23,11 @@ public class CrearPersonaje extends javax.swing.JInternalFrame {
      * Creates new form CrearPersonaje
      */
     private Map<String, Integer> mapaCampanas = new HashMap<>();
+    PersonajeController controlador;
     
-    public CrearPersonaje() {
+    
+    public CrearPersonaje() throws SQLException {
+        this.controlador = new PersonajeController();
         initComponents();
         cargarCampanas();
     }
@@ -204,7 +209,33 @@ public class CrearPersonaje extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void botonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAddActionPerformed
+      
+    try {
+        String nombre = textoNombre.getText();
+        int nivel = Integer.parseInt((String) comboNiveles.getSelectedItem());
+        String clase = listaClase.getSelectedValue();
+        String nombreCampaña = jList1.getSelectedValue();
+
+        if (nombreCampaña == null || clase == null) {
+            JOptionPane.showMessageDialog(this, "Debes seleccionar una clase y una campaña.");
+            return;
+        }
+
+        int idCampaña = mapaCampanas.get(nombreCampaña); 
+
+        ModeloPersonaje personaje = new ModeloPersonaje(nombre, nivel, clase, idCampaña);
+
         
+        controlador.insertarPersonaje(personaje);
+
+        JOptionPane.showMessageDialog(this, "Personaje añadido con éxito.");
+
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Nivel inválido.");
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(this, "Error al insertar personaje: " + ex.getMessage());
+        ex.printStackTrace();
+    }
     }//GEN-LAST:event_botonAddActionPerformed
 
 

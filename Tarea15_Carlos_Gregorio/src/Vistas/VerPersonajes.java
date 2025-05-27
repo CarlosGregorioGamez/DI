@@ -4,8 +4,10 @@
  */
 package Vistas;
 
-import Controlador.CampanaController;
+import Controlador.PersonajeController;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,13 +22,13 @@ public class VerPersonajes extends javax.swing.JInternalFrame {
      */
     VistaPrincipal principal;
     private JDesktopPane escritorio;
-    CampanaController controlador = new CampanaController();
+    PersonajeController controlador = new PersonajeController();
 
     public VerPersonajes(VistaPrincipal principal) throws SQLException {
         this.principal = principal;
         escritorio = principal.getjDesktopPane1();
         initComponents();
-        DefaultTableModel modeloTabla = controlador.verCampanas();
+        DefaultTableModel modeloTabla = controlador.verPersonajes();
         tablaPersonajes.setModel(modeloTabla);
     }
 
@@ -41,8 +43,8 @@ public class VerPersonajes extends javax.swing.JInternalFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaPersonajes = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        botonUpdate = new javax.swing.JButton();
+        botonSalir = new javax.swing.JButton();
 
         tablaPersonajes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -81,12 +83,17 @@ public class VerPersonajes extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tablaPersonajes);
 
-        jButton1.setText("Modificar datos");
-
-        jButton2.setText("Salir");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        botonUpdate.setText("Modificar datos");
+        botonUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                botonUpdateActionPerformed(evt);
+            }
+        });
+
+        botonSalir.setText("Salir");
+        botonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSalirActionPerformed(evt);
             }
         });
 
@@ -101,9 +108,9 @@ public class VerPersonajes extends javax.swing.JInternalFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(botonUpdate)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)))
+                        .addComponent(botonSalir)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -113,22 +120,38 @@ public class VerPersonajes extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(botonUpdate)
+                    .addComponent(botonSalir))
                 .addContainerGap(7, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_botonSalirActionPerformed
+
+    private void botonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonUpdateActionPerformed
+         int fila = tablaPersonajes.getSelectedRow();
+        if (fila != -1) {
+            String nombre = (String) tablaPersonajes.getValueAt(fila, 1);
+             try {
+            ActualizarPersonaje actualizar = new ActualizarPersonaje(nombre);
+            escritorio.add(actualizar);
+            actualizar.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(VerCampana.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        }
+
+    }//GEN-LAST:event_botonUpdateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton botonSalir;
+    private javax.swing.JButton botonUpdate;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaPersonajes;
     // End of variables declaration//GEN-END:variables

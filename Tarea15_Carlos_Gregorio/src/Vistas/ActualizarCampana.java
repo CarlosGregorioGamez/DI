@@ -167,7 +167,7 @@ public class ActualizarCampana extends javax.swing.JInternalFrame {
             campaña.setNombre(nuevoNombre);
             campaña.setDificultad(nuevaDificultad);
 
-            controlador.actualizarCampaña(nombreViejo, campaña); // implementas esto en el controlador
+            controlador.actualizarCampaña(nombreViejo, campaña); 
 
             JOptionPane.showMessageDialog(this, "Campaña actualizada correctamente.");
         } catch (SQLException ex) {

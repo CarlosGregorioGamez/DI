@@ -26,7 +26,7 @@ public class CampanaController {
     }
 
     public void crearCampana(ModeloCampana campana) throws SQLException {
-        String consulta = "insert into partidas (nombre, dificultad) values(?,?)";
+        String consulta = "insert into personajes (nombre, dificultad) values(?,?)";
         Statement statement = connection.getStatement();
 
         PreparedStatement ps = connection.getConnection().prepareStatement(consulta);

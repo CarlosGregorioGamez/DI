@@ -10,21 +10,31 @@ package Modelo;
  */
 public class ModeloPersonaje {
     
-    
+    private int id;
     private String nombrePersonaje;
     private int nivel;
     private String clase;
-    private int id_campaña;
+    private int id_campana;
 
     public ModeloPersonaje(String nombrePersonaje, int nivel, String clase, int id_campaña) {
         this.nombrePersonaje = nombrePersonaje;
         this.nivel = nivel;
         this.clase = clase;
-        this.id_campaña = id_campaña;
+        this.id_campana = id_campaña;
     }
 
     public ModeloPersonaje() {
     }
+
+    public ModeloPersonaje(int id, String nombrePersonaje, int nivel, String clase, int id_campana) {
+        this.id = id;
+        this.nombrePersonaje = nombrePersonaje;
+        this.nivel = nivel;
+        this.clase = clase;
+        this.id_campana = id_campana;
+    }
+
+    
 
     public String getNombrePersonaje() {
         return nombrePersonaje;
@@ -50,17 +60,17 @@ public class ModeloPersonaje {
         this.clase = clase;
     }
 
-    public int getId_campaña() {
-        return id_campaña;
+    public int getId_campana() {
+        return id_campana;
     }
 
-    public void setId_campaña(int id_campaña) {
-        this.id_campaña = id_campaña;
+    public void setId_campana(int id_campana) {
+        this.id_campana = id_campana;
     }
 
     @Override
     public String toString() {
-        return "ModeloCampana{" + "nombrePersonaje=" + nombrePersonaje + ", nivel=" + nivel + ", clase=" + clase + ", id_campa\u00f1a=" + id_campaña + '}';
+        return "ModeloCampana{" + "nombrePersonaje=" + nombrePersonaje + ", nivel=" + nivel + ", clase=" + clase + ", id_campa\u00f1a=" + id_campana + '}';
     }
 
     

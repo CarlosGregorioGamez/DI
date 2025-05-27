@@ -4,6 +4,13 @@
  */
 package Vistas;
 
+import Controlador.PersonajeController;
+import static java.awt.image.ImageObserver.HEIGHT;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author carlo
@@ -13,7 +20,10 @@ public class BorrarPersonaje extends javax.swing.JInternalFrame {
     /**
      * Creates new form CrearPersonaje
      */
-    public BorrarPersonaje() {
+    PersonajeController controlador;
+
+    public BorrarPersonaje() throws SQLException {
+        controlador = new PersonajeController();
         initComponents();
     }
 
@@ -35,8 +45,18 @@ public class BorrarPersonaje extends javax.swing.JInternalFrame {
         jLabel1.setText("Nombre del personaje: ");
 
         botonDelete.setText("Borrar personaje");
+        botonDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonDeleteActionPerformed(evt);
+            }
+        });
 
         botonSalir.setText("Salir");
+        botonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -76,6 +96,23 @@ public class BorrarPersonaje extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_botonSalirActionPerformed
+
+    private void botonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDeleteActionPerformed
+        if (!textoNombre.getText().isEmpty()) {
+            String nombre = textoNombre.getText();
+            try {
+                controlador.borrarPersonaje(nombre);
+                JOptionPane.showMessageDialog(null, "Campaña eliminada la base de datos");
+            } catch (SQLException ex) {
+                Logger.getLogger(CrearCampana.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else
+            JOptionPane.showMessageDialog(null, "Por favor rellene los campos ", title, HEIGHT);
+    }//GEN-LAST:event_botonDeleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
